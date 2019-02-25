@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lanetnet.AspnetCore.APILog", "Lanetnet.AspnetCore.APILog\Lanetnet.AspnetCore.APILog.csproj", "{E9F4DCFD-2306-46E8-9DA0-41716EDBDEE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9F4DCFD-2306-46E8-9DA0-41716EDBDEE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F4DCFD-2306-46E8-9DA0-41716EDBDEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F4DCFD-2306-46E8-9DA0-41716EDBDEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F4DCFD-2306-46E8-9DA0-41716EDBDEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2D4669E-5BCA-42C9-A101-353C65B8C121}
+	EndGlobalSection
+EndGlobal
