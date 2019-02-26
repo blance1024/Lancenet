@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Lanetnet.AspnetCore.APILog.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -14,13 +17,19 @@ namespace Lanetnet.AspnetCore.APILog
         // Handle to the next Middleware in the pipeline  
         private readonly RequestDelegate _next;
 
+        private IConfiguration _cfg;
+
+        private IApiLogService _apiLogService;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="next"></param>
-        public ResponseTimeMiddleware(RequestDelegate next)
+        public ResponseTimeMiddleware(RequestDelegate next, IConfiguration cfg, IApiLogService apiLogService)
         {
             _next = next;
+            _cfg = cfg;
+            _apiLogService = apiLogService;
         }
 
         /// <summary>
@@ -33,12 +42,24 @@ namespace Lanetnet.AspnetCore.APILog
             // Start the Timer using Stopwatch  
             var watch = new Stopwatch();
             watch.Start();
-            context.Response.OnStarting(() => {
+            context.Response.OnStarting(() =>
+            {
                 // Stop the timer information and calculate the time   
                 watch.Stop();
-                var responseTimeForCompleteRequest = watch.ElapsedMilliseconds;
-                // Add the Response time information in the Response headers.   
-                context.Response.Headers[RESPONSE_HEADER_RESPONSE_TIME] = responseTimeForCompleteRequest.ToString();
+
+                //是否启用访问日志功能，默认为不启用
+                if (!_cfg.GetValue<bool>("ApiLog:IsEnable"))
+                {
+                    // Add the Response time information in the Response headers.   
+                    context.Response.Headers[RESPONSE_HEADER_RESPONSE_TIME] = watch.ElapsedMilliseconds.ToString();
+                }
+                else
+                {
+                    Task.Run(() =>
+                    {
+                        _apiLogService.DataSave(context, watch.ElapsedMilliseconds);
+                    });
+                }
                 return Task.CompletedTask;
             });
             // Call the next delegate/middleware in the pipeline   
