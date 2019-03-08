@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Lanetnet.AspnetCore.APILog;
+using Microsoft.AspNetCore.Builder;
 
-namespace Lanetnet.AspnetCore.APILog
+namespace Microsoft.AspNetCore.Builder
 {
     public static class MiddlewareExtension
     {

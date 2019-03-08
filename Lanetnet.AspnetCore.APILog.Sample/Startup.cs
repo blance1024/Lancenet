@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Lanetnet.AspnetCore.APILog.Interfaces;
+﻿using Lanetnet.AspnetCore.APILog.Interfaces;
 using Lanetnet.AspnetCore.APILog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using SqlSugar;
 
 namespace Lanetnet.AspnetCore.APILog.Sample
@@ -42,6 +36,7 @@ namespace Lanetnet.AspnetCore.APILog.Sample
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseResponseTime();
+            app.UseSwaggerBootstrapUI();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

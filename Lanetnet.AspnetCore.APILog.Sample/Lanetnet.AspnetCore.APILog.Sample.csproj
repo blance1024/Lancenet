@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lanetnet.AspnetCore.APILog\Lanetnet.AspnetCore.APILog.csproj" />
+    <ProjectReference Include="..\SwaggerBootstrapUI.AspnetCore\SwaggerBootstrapUI.AspnetCore.csproj" />
   </ItemGroup>
 
 </Project>
