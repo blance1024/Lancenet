@@ -68,10 +68,11 @@ namespace SwaggerBootstrapUI.AspnetCore
             if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{_options.RoutePrefix}/"))
             {
                 var _reg = new Regex("[.][0-9]");
-                var _srcPath = _reg.Replace(path.Substring(0, path.LastIndexOf("/"))??"", r => r.Value.Replace(".", "._"));
+                var _srcPath = path.Substring(0, path.LastIndexOf("/")) ?? "";
                 if (!string.IsNullOrEmpty(_srcPath))
                 {
-                    httpContext.Request.Path = path.Replace(_srcPath, _srcPath.Replace("-", "_"));
+                    var _destPath = _reg.Replace(_srcPath, r => r.Value.Replace(".", "._"));
+                    httpContext.Request.Path = path.Replace(_srcPath, _destPath.Replace("-", "_"));
                 }
             }
             await _staticFileMiddleware.Invoke(httpContext);
