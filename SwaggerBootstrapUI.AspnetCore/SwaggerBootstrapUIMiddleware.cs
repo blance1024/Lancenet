@@ -49,23 +49,23 @@ namespace SwaggerBootstrapUI.AspnetCore
             var path = httpContext.Request.Path.Value;
 
             // If the RoutePrefix is requested (with or without trailing slash), redirect to index URL
-            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{_options.RoutePrefix}/?$"))
-            {
-                // Use relative redirect to support proxy environments
-                var relativeRedirectPath = path.EndsWith("/")
-                    ? "doc.html"
-                    : $"{path.Split('/').Last()}/doc.html";
+            //if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{_options.RoutePrefix}/?$"))
+            //{
+            //    // Use relative redirect to support proxy environments
+            //    var relativeRedirectPath = path.EndsWith("/")
+            //        ? "doc.html"
+            //        : $"{path.Split('/').Last()}/doc.html";
 
-                RespondWithRedirect(httpContext.Response, relativeRedirectPath);
-                return;
-            }
+            //    RespondWithRedirect(httpContext.Response, relativeRedirectPath);
+            //    return;
+            //}
 
-            if (httpMethod == "GET" && Regex.IsMatch(path, $"/{_options.RoutePrefix}/?doc.html"))
+            if (httpMethod == "GET" && Regex.IsMatch(path, $"/doc.html"))
             {
                 await RespondWithIndexHtml(httpContext.Response);
                 return;
             }
-            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{_options.RoutePrefix}/"))
+            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/{_options.StaticFilePrefix}/"))
             {
                 var _reg = new Regex("[.][0-9]");
                 var _srcPath = path.Substring(0, path.LastIndexOf("/")) ?? "";
@@ -75,14 +75,31 @@ namespace SwaggerBootstrapUI.AspnetCore
                     httpContext.Request.Path = path.Replace(_srcPath, _destPath.Replace("-", "_"));
                 }
             }
+            if (httpMethod == "GET" && Regex.IsMatch(path, $"^/swagger-resources$"))
+            {
+                var _data = new List<Dictionary<string, object>>
+                    {
+                        new Dictionary<string, object> {
+                            { "name","默认分组"},
+                            { "swaggerVersion","2.0"},
+                            { "location","/swagger/v1/swagger.json"},
+                            { "url","/swagger/v1/swagger.json"}
+                        }
+                    };
+                if (_options.ConfigObject.Urls.Count() > 0)
+                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(_options.ConfigObject.Urls));
+                else
+                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(_data));
+                return;
+            }
             await _staticFileMiddleware.Invoke(httpContext);
         }
 
-        private void RespondWithRedirect(HttpResponse response, string location)
-        {
-            response.StatusCode = 301;
-            response.Headers["Location"] = location;
-        }
+        //private void RespondWithRedirect(HttpResponse response, string location)
+        //{
+        //    response.StatusCode = 301;
+        //    response.Headers["Location"] = location;
+        //}
 
         private async Task RespondWithIndexHtml(HttpResponse response)
         {
@@ -133,7 +150,7 @@ namespace SwaggerBootstrapUI.AspnetCore
         {
             var staticFileOptions = new StaticFileOptions
             {
-                RequestPath = string.IsNullOrEmpty(options.RoutePrefix) ? string.Empty : $"/{options.RoutePrefix}",
+                //RequestPath = string.IsNullOrEmpty(options.StaticFilePrefix) ? string.Empty : $"/{options.StaticFilePrefix}",
                 FileProvider = new EmbeddedFileProvider(typeof(SwaggerBootstrapUIMiddleware).GetTypeInfo().Assembly, EmbeddedFileNamespace),
             };
 

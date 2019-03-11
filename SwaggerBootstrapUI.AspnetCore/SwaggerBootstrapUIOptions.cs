@@ -7,9 +7,9 @@ namespace SwaggerBootstrapUI.AspnetCore
     public class SwaggerBootstrapUIOptions
     {
         /// <summary>
-     /// Gets or sets a route prefix for accessing the swagger-ui
-     /// </summary>
-        public string RoutePrefix { get; set; } = "swagger";
+        /// Gets or sets a route prefix for accessing the swagger-ui
+        /// </summary>
+        public string StaticFilePrefix { get; set; } = "webjars";
 
         /// <summary>
         /// Gets or sets a Stream function for retrieving the swagger-ui page
@@ -27,10 +27,10 @@ namespace SwaggerBootstrapUI.AspnetCore
         /// </summary>
         public string HeadContent { get; set; } = "";
 
-        ///// <summary>
-        ///// Gets the JavaScript config object, represented as JSON, that will be passed to the SwaggerUI
-        ///// </summary>
-        //public ConfigObject ConfigObject { get; set; } = new ConfigObject();
+        /// <summary>
+        /// Gets the JavaScript config object, represented as JSON, that will be passed to the SwaggerUI
+        /// </summary>
+        public ConfigObject ConfigObject { get; set; } = new ConfigObject();
 
         ///// <summary>
         ///// Gets the JavaScript config object, represented as JSON, that will be passed to the initOAuth method

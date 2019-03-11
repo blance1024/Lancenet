@@ -11,11 +11,12 @@ using SqlSugar;
 namespace Lanetnet.AspnetCore.APILog.Sample.Controllers
 {
     [Route("api/[controller]")]
+    [ApiExplorerSettings(GroupName = "v2")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class Values2Controller : ControllerBase
     {
         /// <summary>
-        /// 样例GET获取列表数据
+        /// 样例2GET获取列表数据
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -38,7 +39,7 @@ namespace Lanetnet.AspnetCore.APILog.Sample.Controllers
         }
 
         /// <summary>
-        /// 样例GET根据ID值获取数据
+        /// 样例2GET根据ID值获取数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -49,7 +50,7 @@ namespace Lanetnet.AspnetCore.APILog.Sample.Controllers
         }
 
         /// <summary>
-        /// 样例增加数据
+        /// 样例2增加数据
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
@@ -59,7 +60,7 @@ namespace Lanetnet.AspnetCore.APILog.Sample.Controllers
 
         
         /// <summary>
-        /// 样例修改数据
+        /// 样例2修改数据
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
@@ -69,7 +70,7 @@ namespace Lanetnet.AspnetCore.APILog.Sample.Controllers
         }
 
         /// <summary>
-        /// 样例删除数据Del
+        /// 样例2删除数据Del
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
