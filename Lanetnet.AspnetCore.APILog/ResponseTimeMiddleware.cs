@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.Internal;
 
 namespace Lanetnet.AspnetCore.APILog
 {
@@ -39,6 +40,11 @@ namespace Lanetnet.AspnetCore.APILog
         /// <returns></returns>
         public Task InvokeAsync(HttpContext context)
         {
+            var _apiLogIsEnable = _cfg.GetValue<bool>("ApiLog:IsEnable");
+            if (_apiLogIsEnable)
+            {
+                context.Request.EnableRewind();
+            }
             // Start the Timer using Stopwatch  
             var watch = new Stopwatch();
             watch.Start();
@@ -48,7 +54,7 @@ namespace Lanetnet.AspnetCore.APILog
                 watch.Stop();
 
                 //是否启用访问日志功能，默认为不启用
-                if (!_cfg.GetValue<bool>("ApiLog:IsEnable"))
+                if (!_apiLogIsEnable)
                 {
                     // Add the Response time information in the Response headers.   
                     context.Response.Headers[RESPONSE_HEADER_RESPONSE_TIME] = watch.ElapsedMilliseconds.ToString();
