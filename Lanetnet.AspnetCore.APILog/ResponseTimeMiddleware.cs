@@ -61,10 +61,7 @@ namespace Lanetnet.AspnetCore.APILog
                 }
                 else
                 {
-                    Task.Run(() =>
-                    {
-                        _apiLogService.DataSave(context, watch.ElapsedMilliseconds);
-                    });
+                    _apiLogService.DataSave(context, watch.ElapsedMilliseconds);
                 }
                 return Task.CompletedTask;
             });
