@@ -5,13 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="doc.html" />
-    <None Remove="webjars\**\*" />
+    <None Remove="node_modules\swagger-bootstrap-ui\doc.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="doc.html" />
-    <EmbeddedResource Include="webjars\**\*" />
+    <EmbeddedResource Include="node_modules/swagger-bootstrap-ui/**/*" Exclude="**/*/*.map;**/*/*.json;**/*/*.md" />
   </ItemGroup>
 
   <ItemGroup>

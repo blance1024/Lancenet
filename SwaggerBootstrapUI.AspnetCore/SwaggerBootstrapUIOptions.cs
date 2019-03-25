@@ -15,7 +15,7 @@ namespace SwaggerBootstrapUI.AspnetCore
         /// Gets or sets a Stream function for retrieving the swagger-ui page
         /// </summary>
         public Func<Stream> IndexStream { get; set; } = () => typeof(SwaggerBootstrapUIOptions).GetTypeInfo().Assembly
-            .GetManifestResourceStream("SwaggerBootstrapUI.AspnetCore.doc.html");
+            .GetManifestResourceStream("SwaggerBootstrapUI.AspnetCore.node_modules.swagger_bootstrap_ui.doc.html");
 
         /// <summary>
         /// Gets or sets a title for the swagger-ui page

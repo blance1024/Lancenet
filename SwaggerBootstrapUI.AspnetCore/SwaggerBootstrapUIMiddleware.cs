@@ -20,7 +20,7 @@ namespace SwaggerBootstrapUI.AspnetCore
 {
     public class SwaggerBootstrapUIMiddleware
     {
-        private const string EmbeddedFileNamespace = "SwaggerBootstrapUI.AspnetCore";
+        private const string EmbeddedFileNamespace = "SwaggerBootstrapUI.AspnetCore.node_modules.swagger_bootstrap_ui";
         private readonly SwaggerBootstrapUIOptions _options;
         private readonly StaticFileMiddleware _staticFileMiddleware;
 
