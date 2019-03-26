@@ -17,12 +17,12 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="sqlSugarCore" Version="4.8.1" />
+    <PackageReference Include="SwaggerBootstrapUI.AspnetCore" Version="1.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lanetnet.AspnetCore.APILog\Lanetnet.AspnetCore.APILog.csproj" />
-    <ProjectReference Include="..\SwaggerBootstrapUI.AspnetCore\SwaggerBootstrapUI.AspnetCore.csproj" />
   </ItemGroup>
 
 </Project>
